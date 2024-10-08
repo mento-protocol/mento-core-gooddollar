@@ -1,0 +1,22 @@
+[profile.default]
+src = "contracts"
+out = "out"
+test = "test"
+libs = ["lib"]
+script = "script"
+
+
+allow_paths = [
+  "node_modules/@celo"
+]
+
+fs_permissions = [
+    { access = "read", path = "out" }
+]
+
+[rpc_endpoints]
+celo="${CELO_MAINNET_RPC_URL}"
+baklava="${BAKLAVA_RPC_URL}"
+alfajores="${ALFAJORES_RPC_URL}"
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options

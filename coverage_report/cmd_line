@@ -1,0 +1,1 @@
+genhtml -o coverage_report lcov.info --ignore-errors corrupt --ignore-errors inconsistent

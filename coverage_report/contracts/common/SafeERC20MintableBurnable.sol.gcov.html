@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - lcov.info - contracts/common/SafeERC20MintableBurnable.sol</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="title">LCOV - code coverage report</td></tr>
+            <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+            <tr>
+              <td width="100%">
+                <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="10%" class="headerValue"><a href="../../index.html" title="Click to go to top-level">top level</a> - <a href="index.html" title="Click to go to directory contracts/common">contracts/common</a> - SafeERC20MintableBurnable.sol<span style="font-size: 80%;"> (source / <a href="SafeERC20MintableBurnable.sol.func-c.html" title="Click to go to function table">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%" class="headerCovTableHead">Coverage</td>
+            <td width="5%" class="headerCovTableHead" title="Covered + Uncovered code">Total</td>
+            <td width="5%" class="headerCovTableHead" title="Exercised code only">Hit</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">lcov.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
+            <td class="headerCovTableEntry">6</td>
+            <td class="headerCovTableEntry">6</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test Date:</td>
+            <td class="headerValue">2024-10-08 14:43:01</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">4</td>
+          </tr>
+                  <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+          </table>
+
+          <table cellpadding=0 cellspacing=0 border=0>
+            <tr>
+              <td><br></td>
+            </tr>
+            <tr>
+              <td>
+<pre class="sourceHeading">            Line data    Source code</pre>
+<pre class="source">
+<span id="L1"><span class="lineNum">       1</span>              : pragma solidity ^0.8.0;</span>
+<span id="L2"><span class="lineNum">       2</span>              : </span>
+<span id="L3"><span class="lineNum">       3</span>              : import { IERC20MintableBurnable as IERC20 } from &quot;contracts/common/IERC20MintableBurnable.sol&quot;;</span>
+<span id="L4"><span class="lineNum">       4</span>              : import { Address } from &quot;openzeppelin-contracts-next/contracts/utils/Address.sol&quot;;</span>
+<span id="L5"><span class="lineNum">       5</span>              : </span>
+<span id="L6"><span class="lineNum">       6</span>              : /**</span>
+<span id="L7"><span class="lineNum">       7</span>              :  * @title SafeERC20MintableBurnable</span>
+<span id="L8"><span class="lineNum">       8</span>              :  * @dev Wrappers around ERC20 operations that throw on failure (when the token</span>
+<span id="L9"><span class="lineNum">       9</span>              :  * contract returns false). Tokens that return no value (and instead revert or</span>
+<span id="L10"><span class="lineNum">      10</span>              :  * throw on failure) are also supported, non-reverting calls are assumed to be</span>
+<span id="L11"><span class="lineNum">      11</span>              :  * successful.</span>
+<span id="L12"><span class="lineNum">      12</span>              :  * To use this library you can add a `using SafeERC20MintableBurnable for IERC20;` statement to your contract,</span>
+<span id="L13"><span class="lineNum">      13</span>              :  * which allows you to call the safe operations as `token.safeTransfer(...)`, etc.</span>
+<span id="L14"><span class="lineNum">      14</span>              :  */</span>
+<span id="L15"><span class="lineNum">      15</span>              : library SafeERC20MintableBurnable {</span>
+<span id="L16"><span class="lineNum">      16</span>              :   using Address for address;</span>
+<span id="L17"><span class="lineNum">      17</span>              : </span>
+<span id="L18"><span class="lineNum">      18</span>              :   function safeTransferFrom(IERC20 token, address from, address to, uint256 value) internal {</span>
+<span id="L19"><span class="lineNum">      19</span> <span class="tlaGNC tlaBgGNC">           6 :     _callOptionalReturn(token, abi.encodeWithSelector(token.transferFrom.selector, from, to, value));</span></span>
+<span id="L20"><span class="lineNum">      20</span>              :   }</span>
+<span id="L21"><span class="lineNum">      21</span>              : </span>
+<span id="L22"><span class="lineNum">      22</span>              :   function safeMint(IERC20 token, address account, uint256 amount) internal {</span>
+<span id="L23"><span class="lineNum">      23</span> <span class="tlaGNC">           3 :     _callOptionalReturn(token, abi.encodeWithSelector(token.mint.selector, account, amount));</span></span>
+<span id="L24"><span class="lineNum">      24</span>              :   }</span>
+<span id="L25"><span class="lineNum">      25</span>              : </span>
+<span id="L26"><span class="lineNum">      26</span>              :   function safeBurn(IERC20 token, uint256 amount) internal {</span>
+<span id="L27"><span class="lineNum">      27</span> <span class="tlaGNC">           3 :     _callOptionalReturn(token, abi.encodeWithSelector(token.burn.selector, amount));</span></span>
+<span id="L28"><span class="lineNum">      28</span>              :   }</span>
+<span id="L29"><span class="lineNum">      29</span>              : </span>
+<span id="L30"><span class="lineNum">      30</span>              :   /**</span>
+<span id="L31"><span class="lineNum">      31</span>              :    * @dev Imitates a Solidity high-level call (i.e. a regular function call to a contract), relaxing the requirement</span>
+<span id="L32"><span class="lineNum">      32</span>              :    * on the return value: the return value is optional (but if data is returned, it must not be false).</span>
+<span id="L33"><span class="lineNum">      33</span>              :    * @param token The token targeted by the call.</span>
+<span id="L34"><span class="lineNum">      34</span>              :    * @param data The call data (encoded using abi.encode or one of its variants).</span>
+<span id="L35"><span class="lineNum">      35</span>              :    */</span>
+<span id="L36"><span class="lineNum">      36</span>              :   function _callOptionalReturn(IERC20 token, bytes memory data) private {</span>
+<span id="L37"><span class="lineNum">      37</span>              :     // We need to perform a low level call here, to bypass Solidity's return data size checking mechanism, since</span>
+<span id="L38"><span class="lineNum">      38</span>              :     // we're implementing it ourselves. We use {Address-functionCall} to perform this call, which verifies that</span>
+<span id="L39"><span class="lineNum">      39</span>              :     // the target address contains contract code and also asserts for success in the low-level call.</span>
+<span id="L40"><span class="lineNum">      40</span>              : </span>
+<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC">          12 :     bytes memory returndata = address(token).functionCall(data, &quot;SafeERC20: low-level call failed&quot;);</span></span>
+<span id="L42"><span class="lineNum">      42</span> <span class="tlaGNC">          12 :     if (returndata.length &gt; 0) {</span></span>
+<span id="L43"><span class="lineNum">      43</span>              :       // Return data is optional</span>
+<span id="L44"><span class="lineNum">      44</span> <span class="tlaGNC">          12 :       require(abi.decode(returndata, (bool)), &quot;SafeERC20: ERC20 operation did not succeed&quot;);</span></span>
+<span id="L45"><span class="lineNum">      45</span>              :     }</span>
+<span id="L46"><span class="lineNum">      46</span>              :   }</span>
+<span id="L47"><span class="lineNum">      47</span>              : }</span>
+        </pre>
+              </td>
+            </tr>
+          </table>
+          <br>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+            <tr><td class="versionInfo">Generated by: <a href="https://github.com//linux-test-project/lcov" target="_parent">LCOV version 2.1-1</a></td></tr>
+          </table>
+          <br>
+
+</body>
+</html>
