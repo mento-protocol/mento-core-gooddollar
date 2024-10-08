@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2024-10-08 14:43:01</td>
+            <td class="headerValue">2024-10-08 18:32:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -78,15 +78,15 @@
 <span id="L16"><span class="lineNum">      16</span>              :   using Address for address;</span>
 <span id="L17"><span class="lineNum">      17</span>              : </span>
 <span id="L18"><span class="lineNum">      18</span>              :   function safeTransferFrom(IERC20 token, address from, address to, uint256 value) internal {</span>
-<span id="L19"><span class="lineNum">      19</span> <span class="tlaGNC tlaBgGNC">           6 :     _callOptionalReturn(token, abi.encodeWithSelector(token.transferFrom.selector, from, to, value));</span></span>
+<span id="L19"><span class="lineNum">      19</span> <span class="tlaGNC tlaBgGNC">          10 :     _callOptionalReturn(token, abi.encodeWithSelector(token.transferFrom.selector, from, to, value));</span></span>
 <span id="L20"><span class="lineNum">      20</span>              :   }</span>
 <span id="L21"><span class="lineNum">      21</span>              : </span>
 <span id="L22"><span class="lineNum">      22</span>              :   function safeMint(IERC20 token, address account, uint256 amount) internal {</span>
-<span id="L23"><span class="lineNum">      23</span> <span class="tlaGNC">           3 :     _callOptionalReturn(token, abi.encodeWithSelector(token.mint.selector, account, amount));</span></span>
+<span id="L23"><span class="lineNum">      23</span> <span class="tlaGNC">           5 :     _callOptionalReturn(token, abi.encodeWithSelector(token.mint.selector, account, amount));</span></span>
 <span id="L24"><span class="lineNum">      24</span>              :   }</span>
 <span id="L25"><span class="lineNum">      25</span>              : </span>
 <span id="L26"><span class="lineNum">      26</span>              :   function safeBurn(IERC20 token, uint256 amount) internal {</span>
-<span id="L27"><span class="lineNum">      27</span> <span class="tlaGNC">           3 :     _callOptionalReturn(token, abi.encodeWithSelector(token.burn.selector, amount));</span></span>
+<span id="L27"><span class="lineNum">      27</span> <span class="tlaGNC">           5 :     _callOptionalReturn(token, abi.encodeWithSelector(token.burn.selector, amount));</span></span>
 <span id="L28"><span class="lineNum">      28</span>              :   }</span>
 <span id="L29"><span class="lineNum">      29</span>              : </span>
 <span id="L30"><span class="lineNum">      30</span>              :   /**</span>
@@ -100,10 +100,10 @@
 <span id="L38"><span class="lineNum">      38</span>              :     // we're implementing it ourselves. We use {Address-functionCall} to perform this call, which verifies that</span>
 <span id="L39"><span class="lineNum">      39</span>              :     // the target address contains contract code and also asserts for success in the low-level call.</span>
 <span id="L40"><span class="lineNum">      40</span>              : </span>
-<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC">          12 :     bytes memory returndata = address(token).functionCall(data, &quot;SafeERC20: low-level call failed&quot;);</span></span>
-<span id="L42"><span class="lineNum">      42</span> <span class="tlaGNC">          12 :     if (returndata.length &gt; 0) {</span></span>
+<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC">          20 :     bytes memory returndata = address(token).functionCall(data, &quot;SafeERC20: low-level call failed&quot;);</span></span>
+<span id="L42"><span class="lineNum">      42</span> <span class="tlaGNC">          20 :     if (returndata.length &gt; 0) {</span></span>
 <span id="L43"><span class="lineNum">      43</span>              :       // Return data is optional</span>
-<span id="L44"><span class="lineNum">      44</span> <span class="tlaGNC">          12 :       require(abi.decode(returndata, (bool)), &quot;SafeERC20: ERC20 operation did not succeed&quot;);</span></span>
+<span id="L44"><span class="lineNum">      44</span> <span class="tlaGNC">          18 :       require(abi.decode(returndata, (bool)), &quot;SafeERC20: ERC20 operation did not succeed&quot;);</span></span>
 <span id="L45"><span class="lineNum">      45</span>              :     }</span>
 <span id="L46"><span class="lineNum">      46</span>              :   }</span>
 <span id="L47"><span class="lineNum">      47</span>              : }</span>

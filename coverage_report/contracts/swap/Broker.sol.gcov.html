@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2024-10-08 14:43:01</td>
+            <td class="headerValue">2024-10-08 18:32:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -122,9 +122,9 @@
 <span id="L60"><span class="lineNum">      60</span>              :    * @param _reserves The addresses of the Reserve contracts.</span>
 <span id="L61"><span class="lineNum">      61</span>              :    */</span>
 <span id="L62"><span class="lineNum">      62</span>              :   function initialize(address[] calldata _exchangeProviders, address[] calldata _reserves) external initializer {</span>
-<span id="L63"><span class="lineNum">      63</span> <span class="tlaGNC tlaBgGNC">          30 :     _transferOwnership(msg.sender);</span></span>
-<span id="L64"><span class="lineNum">      64</span> <span class="tlaGNC">          30 :     for (uint256 i = 0; i &lt; _exchangeProviders.length; i++) {</span></span>
-<span id="L65"><span class="lineNum">      65</span> <span class="tlaGNC">          90 :       addExchangeProvider(_exchangeProviders[i], _reserves[i]);</span></span>
+<span id="L63"><span class="lineNum">      63</span> <span class="tlaGNC tlaBgGNC">          36 :     _transferOwnership(msg.sender);</span></span>
+<span id="L64"><span class="lineNum">      64</span> <span class="tlaGNC">          36 :     for (uint256 i = 0; i &lt; _exchangeProviders.length; i++) {</span></span>
+<span id="L65"><span class="lineNum">      65</span> <span class="tlaGNC">          96 :       addExchangeProvider(_exchangeProviders[i], _reserves[i]);</span></span>
 <span id="L66"><span class="lineNum">      66</span>              :     }</span>
 <span id="L67"><span class="lineNum">      67</span>              :   }</span>
 <span id="L68"><span class="lineNum">      68</span>              : </span>
@@ -157,15 +157,15 @@
 <span id="L95"><span class="lineNum">      95</span>              :     address exchangeProvider,</span>
 <span id="L96"><span class="lineNum">      96</span>              :     address reserve</span>
 <span id="L97"><span class="lineNum">      97</span>              :   ) public override(IBroker, IBrokerAdmin) onlyOwner returns (uint256 index) {</span>
-<span id="L98"><span class="lineNum">      98</span> <span class="tlaGNC">          94 :     require(!isExchangeProvider[exchangeProvider], &quot;ExchangeProvider already exists in the list&quot;);</span></span>
-<span id="L99"><span class="lineNum">      99</span> <span class="tlaGNC">          93 :     require(exchangeProvider != address(0), &quot;ExchangeProvider address can't be 0&quot;);</span></span>
-<span id="L100"><span class="lineNum">     100</span> <span class="tlaGNC">          92 :     require(reserve != address(0), &quot;Reserve address can't be 0&quot;);</span></span>
-<span id="L101"><span class="lineNum">     101</span> <span class="tlaGNC">          91 :     exchangeProviders.push(exchangeProvider);</span></span>
-<span id="L102"><span class="lineNum">     102</span> <span class="tlaGNC">          91 :     isExchangeProvider[exchangeProvider] = true;</span></span>
-<span id="L103"><span class="lineNum">     103</span> <span class="tlaGNC">          91 :     exchangeReserve[exchangeProvider] = reserve;</span></span>
-<span id="L104"><span class="lineNum">     104</span> <span class="tlaGNC">          91 :     emit ExchangeProviderAdded(exchangeProvider);</span></span>
-<span id="L105"><span class="lineNum">     105</span> <span class="tlaGNC">          91 :     emit ReserveSet(exchangeProvider, reserve);</span></span>
-<span id="L106"><span class="lineNum">     106</span> <span class="tlaGNC">          91 :     index = exchangeProviders.length - 1;</span></span>
+<span id="L98"><span class="lineNum">      98</span> <span class="tlaGNC">         100 :     require(!isExchangeProvider[exchangeProvider], &quot;ExchangeProvider already exists in the list&quot;);</span></span>
+<span id="L99"><span class="lineNum">      99</span> <span class="tlaGNC">          99 :     require(exchangeProvider != address(0), &quot;ExchangeProvider address can't be 0&quot;);</span></span>
+<span id="L100"><span class="lineNum">     100</span> <span class="tlaGNC">          98 :     require(reserve != address(0), &quot;Reserve address can't be 0&quot;);</span></span>
+<span id="L101"><span class="lineNum">     101</span> <span class="tlaGNC">          97 :     exchangeProviders.push(exchangeProvider);</span></span>
+<span id="L102"><span class="lineNum">     102</span> <span class="tlaGNC">          97 :     isExchangeProvider[exchangeProvider] = true;</span></span>
+<span id="L103"><span class="lineNum">     103</span> <span class="tlaGNC">          97 :     exchangeReserve[exchangeProvider] = reserve;</span></span>
+<span id="L104"><span class="lineNum">     104</span> <span class="tlaGNC">          97 :     emit ExchangeProviderAdded(exchangeProvider);</span></span>
+<span id="L105"><span class="lineNum">     105</span> <span class="tlaGNC">          97 :     emit ReserveSet(exchangeProvider, reserve);</span></span>
+<span id="L106"><span class="lineNum">     106</span> <span class="tlaGNC">          97 :     index = exchangeProviders.length - 1;</span></span>
 <span id="L107"><span class="lineNum">     107</span>              :   }</span>
 <span id="L108"><span class="lineNum">     108</span>              : </span>
 <span id="L109"><span class="lineNum">     109</span>              :   /**</span>
@@ -201,8 +201,8 @@
 <span id="L139"><span class="lineNum">     139</span>              :     address tokenOut,</span>
 <span id="L140"><span class="lineNum">     140</span>              :     uint256 amountOut</span>
 <span id="L141"><span class="lineNum">     141</span>              :   ) external view returns (uint256 amountIn) {</span>
-<span id="L142"><span class="lineNum">     142</span> <span class="tlaGNC">           2 :     require(isExchangeProvider[exchangeProvider], &quot;ExchangeProvider does not exist&quot;);</span></span>
-<span id="L143"><span class="lineNum">     143</span> <span class="tlaGNC">           1 :     amountIn = IExchangeProvider(exchangeProvider).getAmountIn(exchangeId, tokenIn, tokenOut, amountOut);</span></span>
+<span id="L142"><span class="lineNum">     142</span> <span class="tlaGNC">           4 :     require(isExchangeProvider[exchangeProvider], &quot;ExchangeProvider does not exist&quot;);</span></span>
+<span id="L143"><span class="lineNum">     143</span> <span class="tlaGNC">           3 :     amountIn = IExchangeProvider(exchangeProvider).getAmountIn(exchangeId, tokenIn, tokenOut, amountOut);</span></span>
 <span id="L144"><span class="lineNum">     144</span>              :   }</span>
 <span id="L145"><span class="lineNum">     145</span>              : </span>
 <span id="L146"><span class="lineNum">     146</span>              :   /**</span>
@@ -221,8 +221,8 @@
 <span id="L159"><span class="lineNum">     159</span>              :     address tokenOut,</span>
 <span id="L160"><span class="lineNum">     160</span>              :     uint256 amountIn</span>
 <span id="L161"><span class="lineNum">     161</span>              :   ) external view returns (uint256 amountOut) {</span>
-<span id="L162"><span class="lineNum">     162</span> <span class="tlaGNC">           2 :     require(isExchangeProvider[exchangeProvider], &quot;ExchangeProvider does not exist&quot;);</span></span>
-<span id="L163"><span class="lineNum">     163</span> <span class="tlaGNC">           1 :     amountOut = IExchangeProvider(exchangeProvider).getAmountOut(exchangeId, tokenIn, tokenOut, amountIn);</span></span>
+<span id="L162"><span class="lineNum">     162</span> <span class="tlaGNC">           4 :     require(isExchangeProvider[exchangeProvider], &quot;ExchangeProvider does not exist&quot;);</span></span>
+<span id="L163"><span class="lineNum">     163</span> <span class="tlaGNC">           3 :     amountOut = IExchangeProvider(exchangeProvider).getAmountOut(exchangeId, tokenIn, tokenOut, amountIn);</span></span>
 <span id="L164"><span class="lineNum">     164</span>              :   }</span>
 <span id="L165"><span class="lineNum">     165</span>              : </span>
 <span id="L166"><span class="lineNum">     166</span>              :   /**</span>
@@ -243,16 +243,16 @@
 <span id="L181"><span class="lineNum">     181</span>              :     uint256 amountIn,</span>
 <span id="L182"><span class="lineNum">     182</span>              :     uint256 amountOutMin</span>
 <span id="L183"><span class="lineNum">     183</span>              :   ) external nonReentrant returns (uint256 amountOut) {</span>
-<span id="L184"><span class="lineNum">     184</span> <span class="tlaGNC">           5 :     require(isExchangeProvider[exchangeProvider], &quot;ExchangeProvider does not exist&quot;);</span></span>
+<span id="L184"><span class="lineNum">     184</span> <span class="tlaGNC">           7 :     require(isExchangeProvider[exchangeProvider], &quot;ExchangeProvider does not exist&quot;);</span></span>
 <span id="L185"><span class="lineNum">     185</span>              :     // slither-disable-next-line reentrancy-benign</span>
-<span id="L186"><span class="lineNum">     186</span> <span class="tlaGNC">           5 :     amountOut = IExchangeProvider(exchangeProvider).swapIn(exchangeId, tokenIn, tokenOut, amountIn);</span></span>
-<span id="L187"><span class="lineNum">     187</span> <span class="tlaGNC">           5 :     require(amountOut &gt;= amountOutMin, &quot;amountOutMin not met&quot;);</span></span>
-<span id="L188"><span class="lineNum">     188</span> <span class="tlaGNC">           4 :     guardTradingLimits(exchangeId, tokenIn, amountIn, tokenOut, amountOut);</span></span>
+<span id="L186"><span class="lineNum">     186</span> <span class="tlaGNC">           7 :     amountOut = IExchangeProvider(exchangeProvider).swapIn(exchangeId, tokenIn, tokenOut, amountIn);</span></span>
+<span id="L187"><span class="lineNum">     187</span> <span class="tlaGNC">           7 :     require(amountOut &gt;= amountOutMin, &quot;amountOutMin not met&quot;);</span></span>
+<span id="L188"><span class="lineNum">     188</span> <span class="tlaGNC">           6 :     guardTradingLimits(exchangeId, tokenIn, amountIn, tokenOut, amountOut);</span></span>
 <span id="L189"><span class="lineNum">     189</span>              : </span>
-<span id="L190"><span class="lineNum">     190</span> <span class="tlaGNC">           3 :     address reserve = exchangeReserve[exchangeProvider];</span></span>
-<span id="L191"><span class="lineNum">     191</span> <span class="tlaGNC">           3 :     transferIn(payable(msg.sender), tokenIn, amountIn, reserve);</span></span>
-<span id="L192"><span class="lineNum">     192</span> <span class="tlaGNC">           3 :     transferOut(payable(msg.sender), tokenOut, amountOut, reserve);</span></span>
-<span id="L193"><span class="lineNum">     193</span> <span class="tlaGNC">           3 :     emit Swap(exchangeProvider, exchangeId, msg.sender, tokenIn, tokenOut, amountIn, amountOut);</span></span>
+<span id="L190"><span class="lineNum">     190</span> <span class="tlaGNC">           5 :     address reserve = exchangeReserve[exchangeProvider];</span></span>
+<span id="L191"><span class="lineNum">     191</span> <span class="tlaGNC">           5 :     transferIn(payable(msg.sender), tokenIn, amountIn, reserve);</span></span>
+<span id="L192"><span class="lineNum">     192</span> <span class="tlaGNC">           5 :     transferOut(payable(msg.sender), tokenOut, amountOut, reserve);</span></span>
+<span id="L193"><span class="lineNum">     193</span> <span class="tlaGNC">           5 :     emit Swap(exchangeProvider, exchangeId, msg.sender, tokenIn, tokenOut, amountIn, amountOut);</span></span>
 <span id="L194"><span class="lineNum">     194</span>              :   }</span>
 <span id="L195"><span class="lineNum">     195</span>              : </span>
 <span id="L196"><span class="lineNum">     196</span>              :   /**</span>
@@ -273,16 +273,16 @@
 <span id="L211"><span class="lineNum">     211</span>              :     uint256 amountOut,</span>
 <span id="L212"><span class="lineNum">     212</span>              :     uint256 amountInMax</span>
 <span id="L213"><span class="lineNum">     213</span>              :   ) external nonReentrant returns (uint256 amountIn) {</span>
-<span id="L214"><span class="lineNum">     214</span> <span class="tlaGNC">           4 :     require(isExchangeProvider[exchangeProvider], &quot;ExchangeProvider does not exist&quot;);</span></span>
+<span id="L214"><span class="lineNum">     214</span> <span class="tlaGNC">           6 :     require(isExchangeProvider[exchangeProvider], &quot;ExchangeProvider does not exist&quot;);</span></span>
 <span id="L215"><span class="lineNum">     215</span>              :     // slither-disable-next-line reentrancy-benign</span>
-<span id="L216"><span class="lineNum">     216</span> <span class="tlaGNC">           3 :     amountIn = IExchangeProvider(exchangeProvider).swapOut(exchangeId, tokenIn, tokenOut, amountOut);</span></span>
-<span id="L217"><span class="lineNum">     217</span> <span class="tlaGNC">           3 :     require(amountIn &lt;= amountInMax, &quot;amountInMax exceeded&quot;);</span></span>
-<span id="L218"><span class="lineNum">     218</span> <span class="tlaGNC">           2 :     guardTradingLimits(exchangeId, tokenIn, amountIn, tokenOut, amountOut);</span></span>
+<span id="L216"><span class="lineNum">     216</span> <span class="tlaGNC">           5 :     amountIn = IExchangeProvider(exchangeProvider).swapOut(exchangeId, tokenIn, tokenOut, amountOut);</span></span>
+<span id="L217"><span class="lineNum">     217</span> <span class="tlaGNC">           5 :     require(amountIn &lt;= amountInMax, &quot;amountInMax exceeded&quot;);</span></span>
+<span id="L218"><span class="lineNum">     218</span> <span class="tlaGNC">           4 :     guardTradingLimits(exchangeId, tokenIn, amountIn, tokenOut, amountOut);</span></span>
 <span id="L219"><span class="lineNum">     219</span>              : </span>
-<span id="L220"><span class="lineNum">     220</span> <span class="tlaGNC">           2 :     address reserve = exchangeReserve[exchangeProvider];</span></span>
-<span id="L221"><span class="lineNum">     221</span> <span class="tlaGNC">           2 :     transferIn(payable(msg.sender), tokenIn, amountIn, reserve);</span></span>
-<span id="L222"><span class="lineNum">     222</span> <span class="tlaGNC">           2 :     transferOut(payable(msg.sender), tokenOut, amountOut, reserve);</span></span>
-<span id="L223"><span class="lineNum">     223</span> <span class="tlaGNC">           2 :     emit Swap(exchangeProvider, exchangeId, msg.sender, tokenIn, tokenOut, amountIn, amountOut);</span></span>
+<span id="L220"><span class="lineNum">     220</span> <span class="tlaGNC">           4 :     address reserve = exchangeReserve[exchangeProvider];</span></span>
+<span id="L221"><span class="lineNum">     221</span> <span class="tlaGNC">           4 :     transferIn(payable(msg.sender), tokenIn, amountIn, reserve);</span></span>
+<span id="L222"><span class="lineNum">     222</span> <span class="tlaGNC">           4 :     transferOut(payable(msg.sender), tokenOut, amountOut, reserve);</span></span>
+<span id="L223"><span class="lineNum">     223</span> <span class="tlaGNC">           4 :     emit Swap(exchangeProvider, exchangeId, msg.sender, tokenIn, tokenOut, amountIn, amountOut);</span></span>
 <span id="L224"><span class="lineNum">     224</span>              :   }</span>
 <span id="L225"><span class="lineNum">     225</span>              : </span>
 <span id="L226"><span class="lineNum">     226</span>              :   /**</span>
@@ -334,11 +334,11 @@
 <span id="L272"><span class="lineNum">     272</span>              :    * @param _reserve The address of the corresponding reserve.</span>
 <span id="L273"><span class="lineNum">     273</span>              :    */</span>
 <span id="L274"><span class="lineNum">     274</span>              :   function transferOut(address payable to, address token, uint256 amount, address _reserve) internal {</span>
-<span id="L275"><span class="lineNum">     275</span> <span class="tlaGNC">           5 :     IReserve reserve = IReserve(_reserve);</span></span>
-<span id="L276"><span class="lineNum">     276</span> <span class="tlaGNC">           5 :     if (reserve.isStableAsset(token)) {</span></span>
-<span id="L277"><span class="lineNum">     277</span> <span class="tlaGNC">           3 :       IERC20(token).safeMint(to, amount);</span></span>
-<span id="L278"><span class="lineNum">     278</span> <span class="tlaGNC">           2 :     } else if (reserve.isCollateralAsset(token)) {</span></span>
-<span id="L279"><span class="lineNum">     279</span> <span class="tlaGNC">           2 :       require(reserve.transferExchangeCollateralAsset(token, to, amount), &quot;Transfer of the collateral asset failed&quot;);</span></span>
+<span id="L275"><span class="lineNum">     275</span> <span class="tlaGNC">           9 :     IReserve reserve = IReserve(_reserve);</span></span>
+<span id="L276"><span class="lineNum">     276</span> <span class="tlaGNC">           9 :     if (reserve.isStableAsset(token)) {</span></span>
+<span id="L277"><span class="lineNum">     277</span> <span class="tlaGNC">           5 :       IERC20(token).safeMint(to, amount);</span></span>
+<span id="L278"><span class="lineNum">     278</span> <span class="tlaGNC">           4 :     } else if (reserve.isCollateralAsset(token)) {</span></span>
+<span id="L279"><span class="lineNum">     279</span> <span class="tlaGNC">           4 :       require(reserve.transferExchangeCollateralAsset(token, to, amount), &quot;Transfer of the collateral asset failed&quot;);</span></span>
 <span id="L280"><span class="lineNum">     280</span>              :     } else {</span>
 <span id="L281"><span class="lineNum">     281</span> <span class="tlaUNC tlaBgUNC">           0 :       revert(&quot;Token must be stable or collateral assert&quot;);</span></span>
 <span id="L282"><span class="lineNum">     282</span>              :     }</span>
@@ -354,12 +354,12 @@
 <span id="L292"><span class="lineNum">     292</span>              :    * @param _reserve The address of the corresponding reserve.</span>
 <span id="L293"><span class="lineNum">     293</span>              :    */</span>
 <span id="L294"><span class="lineNum">     294</span>              :   function transferIn(address payable from, address token, uint256 amount, address _reserve) internal {</span>
-<span id="L295"><span class="lineNum">     295</span> <span class="tlaGNC tlaBgGNC">           5 :     IReserve reserve = IReserve(_reserve);</span></span>
-<span id="L296"><span class="lineNum">     296</span> <span class="tlaGNC">           5 :     if (reserve.isStableAsset(token)) {</span></span>
-<span id="L297"><span class="lineNum">     297</span> <span class="tlaGNC">           2 :       IERC20(token).safeTransferFrom(from, address(this), amount);</span></span>
-<span id="L298"><span class="lineNum">     298</span> <span class="tlaGNC">           2 :       IERC20(token).safeBurn(amount);</span></span>
-<span id="L299"><span class="lineNum">     299</span> <span class="tlaGNC">           3 :     } else if (reserve.isCollateralAsset(token)) {</span></span>
-<span id="L300"><span class="lineNum">     300</span> <span class="tlaGNC">           3 :       IERC20(token).safeTransferFrom(from, address(reserve), amount);</span></span>
+<span id="L295"><span class="lineNum">     295</span> <span class="tlaGNC tlaBgGNC">           9 :     IReserve reserve = IReserve(_reserve);</span></span>
+<span id="L296"><span class="lineNum">     296</span> <span class="tlaGNC">           9 :     if (reserve.isStableAsset(token)) {</span></span>
+<span id="L297"><span class="lineNum">     297</span> <span class="tlaGNC">           4 :       IERC20(token).safeTransferFrom(from, address(this), amount);</span></span>
+<span id="L298"><span class="lineNum">     298</span> <span class="tlaGNC">           4 :       IERC20(token).safeBurn(amount);</span></span>
+<span id="L299"><span class="lineNum">     299</span> <span class="tlaGNC">           5 :     } else if (reserve.isCollateralAsset(token)) {</span></span>
+<span id="L300"><span class="lineNum">     300</span> <span class="tlaGNC">           5 :       IERC20(token).safeTransferFrom(from, address(reserve), amount);</span></span>
 <span id="L301"><span class="lineNum">     301</span>              :     } else {</span>
 <span id="L302"><span class="lineNum">     302</span> <span class="tlaUNC tlaBgUNC">           0 :       revert(&quot;Token must be stable or collateral assert&quot;);</span></span>
 <span id="L303"><span class="lineNum">     303</span>              :     }</span>
@@ -381,13 +381,13 @@
 <span id="L319"><span class="lineNum">     319</span>              :     address _tokenOut,</span>
 <span id="L320"><span class="lineNum">     320</span>              :     uint256 amountOut</span>
 <span id="L321"><span class="lineNum">     321</span>              :   ) internal {</span>
-<span id="L322"><span class="lineNum">     322</span> <span class="tlaGNC tlaBgGNC">           6 :     bytes32 tokenIn = bytes32(uint256(uint160(_tokenIn)));</span></span>
-<span id="L323"><span class="lineNum">     323</span> <span class="tlaGNC">           6 :     bytes32 tokenOut = bytes32(uint256(uint160(_tokenOut)));</span></span>
-<span id="L324"><span class="lineNum">     324</span> <span class="tlaGNC">           6 :     require(amountIn &lt;= uint256(MAX_INT256), &quot;amountIn too large&quot;);</span></span>
-<span id="L325"><span class="lineNum">     325</span> <span class="tlaGNC">           6 :     require(amountOut &lt;= uint256(MAX_INT256), &quot;amountOut too large&quot;);</span></span>
+<span id="L322"><span class="lineNum">     322</span> <span class="tlaGNC tlaBgGNC">          10 :     bytes32 tokenIn = bytes32(uint256(uint160(_tokenIn)));</span></span>
+<span id="L323"><span class="lineNum">     323</span> <span class="tlaGNC">          10 :     bytes32 tokenOut = bytes32(uint256(uint160(_tokenOut)));</span></span>
+<span id="L324"><span class="lineNum">     324</span> <span class="tlaGNC">          10 :     require(amountIn &lt;= uint256(MAX_INT256), &quot;amountIn too large&quot;);</span></span>
+<span id="L325"><span class="lineNum">     325</span> <span class="tlaGNC">          10 :     require(amountOut &lt;= uint256(MAX_INT256), &quot;amountOut too large&quot;);</span></span>
 <span id="L326"><span class="lineNum">     326</span>              : </span>
-<span id="L327"><span class="lineNum">     327</span> <span class="tlaGNC">           6 :     guardTradingLimit(exchangeId ^ tokenIn, int256(amountIn), _tokenIn);</span></span>
-<span id="L328"><span class="lineNum">     328</span> <span class="tlaGNC">           5 :     guardTradingLimit(exchangeId ^ tokenOut, -1 * int256(amountOut), _tokenOut);</span></span>
+<span id="L327"><span class="lineNum">     327</span> <span class="tlaGNC">          10 :     guardTradingLimit(exchangeId ^ tokenIn, int256(amountIn), _tokenIn);</span></span>
+<span id="L328"><span class="lineNum">     328</span> <span class="tlaGNC">           9 :     guardTradingLimit(exchangeId ^ tokenOut, -1 * int256(amountOut), _tokenOut);</span></span>
 <span id="L329"><span class="lineNum">     329</span>              :   }</span>
 <span id="L330"><span class="lineNum">     330</span>              : </span>
 <span id="L331"><span class="lineNum">     331</span>              :   /**</span>
@@ -398,8 +398,8 @@
 <span id="L336"><span class="lineNum">     336</span>              :    * @param token the address of the token, used to lookup decimals.</span>
 <span id="L337"><span class="lineNum">     337</span>              :    */</span>
 <span id="L338"><span class="lineNum">     338</span>              :   function guardTradingLimit(bytes32 tradingLimitId, int256 deltaFlow, address token) internal {</span>
-<span id="L339"><span class="lineNum">     339</span> <span class="tlaGNC">          11 :     ITradingLimits.Config memory tradingLimitConfig = tradingLimitsConfig[tradingLimitId];</span></span>
-<span id="L340"><span class="lineNum">     340</span> <span class="tlaGNC">          11 :     if (tradingLimitConfig.flags &gt; 0) {</span></span>
+<span id="L339"><span class="lineNum">     339</span> <span class="tlaGNC">          19 :     ITradingLimits.Config memory tradingLimitConfig = tradingLimitsConfig[tradingLimitId];</span></span>
+<span id="L340"><span class="lineNum">     340</span> <span class="tlaGNC">          19 :     if (tradingLimitConfig.flags &gt; 0) {</span></span>
 <span id="L341"><span class="lineNum">     341</span> <span class="tlaGNC">           2 :       ITradingLimits.State memory tradingLimitState = tradingLimitsState[tradingLimitId];</span></span>
 <span id="L342"><span class="lineNum">     342</span> <span class="tlaGNC">           2 :       tradingLimitState = tradingLimitState.update(tradingLimitConfig, deltaFlow, IERC20Metadata(token).decimals());</span></span>
 <span id="L343"><span class="lineNum">     343</span> <span class="tlaGNC">           2 :       tradingLimitState.verify(tradingLimitConfig);</span></span>

@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2024-10-08 14:43:01</td>
+            <td class="headerValue">2024-10-08 18:32:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -129,17 +129,17 @@
 <span id="L67"><span class="lineNum">      67</span>              :         address _broker,</span>
 <span id="L68"><span class="lineNum">      68</span>              :         address _reserve</span>
 <span id="L69"><span class="lineNum">      69</span>              :     ) internal onlyInitializing {</span>
-<span id="L70"><span class="lineNum">      70</span> <span class="tlaGNC">          88 :         __Ownable_init();</span></span>
+<span id="L70"><span class="lineNum">      70</span> <span class="tlaGNC">          94 :         __Ownable_init();</span></span>
 <span id="L71"><span class="lineNum">      71</span>              : </span>
-<span id="L72"><span class="lineNum">      72</span> <span class="tlaGNC">          88 :         BancorFormula.init();</span></span>
-<span id="L73"><span class="lineNum">      73</span> <span class="tlaGNC">          88 :         setBroker(_broker);</span></span>
-<span id="L74"><span class="lineNum">      74</span> <span class="tlaGNC">          88 :         setReserve(_reserve);</span></span>
+<span id="L72"><span class="lineNum">      72</span> <span class="tlaGNC">          94 :         BancorFormula.init();</span></span>
+<span id="L73"><span class="lineNum">      73</span> <span class="tlaGNC">          94 :         setBroker(_broker);</span></span>
+<span id="L74"><span class="lineNum">      74</span> <span class="tlaGNC">          94 :         setReserve(_reserve);</span></span>
 <span id="L75"><span class="lineNum">      75</span>              :     }</span>
 <span id="L76"><span class="lineNum">      76</span>              : </span>
 <span id="L77"><span class="lineNum">      77</span>              :     /* ==================== Modifiers ==================== */</span>
 <span id="L78"><span class="lineNum">      78</span>              : </span>
 <span id="L79"><span class="lineNum">      79</span>              :     modifier onlyBroker() {</span>
-<span id="L80"><span class="lineNum">      80</span> <span class="tlaGNC">           9 :         require(msg.sender == broker, &quot;Caller is not the Broker&quot;);</span></span>
+<span id="L80"><span class="lineNum">      80</span> <span class="tlaGNC">          11 :         require(msg.sender == broker, &quot;Caller is not the Broker&quot;);</span></span>
 <span id="L81"><span class="lineNum">      81</span>              :         _;</span>
 <span id="L82"><span class="lineNum">      82</span>              :     }</span>
 <span id="L83"><span class="lineNum">      83</span>              : </span>
@@ -148,7 +148,7 @@
 <span id="L86"><span class="lineNum">      86</span>              :         address tokenOut,</span>
 <span id="L87"><span class="lineNum">      87</span>              :         PoolExchange memory exchange</span>
 <span id="L88"><span class="lineNum">      88</span>              :     ) {</span>
-<span id="L89"><span class="lineNum">      89</span> <span class="tlaGNC">          16 :         require(</span></span>
+<span id="L89"><span class="lineNum">      89</span> <span class="tlaGNC">          20 :         require(</span></span>
 <span id="L90"><span class="lineNum">      90</span>              :             (tokenIn == exchange.reserveAsset &amp;&amp;</span>
 <span id="L91"><span class="lineNum">      91</span>              :                 tokenOut == exchange.tokenAddress) ||</span>
 <span id="L92"><span class="lineNum">      92</span>              :                 (tokenIn == exchange.tokenAddress &amp;&amp;</span>
@@ -167,8 +167,8 @@
 <span id="L105"><span class="lineNum">     105</span>              :     function getPoolExchange(</span>
 <span id="L106"><span class="lineNum">     106</span>              :         bytes32 exchangeId</span>
 <span id="L107"><span class="lineNum">     107</span>              :     ) public view returns (PoolExchange memory exchange) {</span>
-<span id="L108"><span class="lineNum">     108</span> <span class="tlaGNC">          63 :         exchange = exchanges[exchangeId];</span></span>
-<span id="L109"><span class="lineNum">     109</span> <span class="tlaGNC">          63 :         require(</span></span>
+<span id="L108"><span class="lineNum">     108</span> <span class="tlaGNC">          91 :         exchange = exchanges[exchangeId];</span></span>
+<span id="L109"><span class="lineNum">     109</span> <span class="tlaGNC">          91 :         require(</span></span>
 <span id="L110"><span class="lineNum">     110</span>              :             exchange.tokenAddress != address(0),</span>
 <span id="L111"><span class="lineNum">     111</span>              :             &quot;An exchange with the specified id does not exist&quot;</span>
 <span id="L112"><span class="lineNum">     112</span>              :         );</span>
@@ -213,16 +213,16 @@
 <span id="L151"><span class="lineNum">     151</span>              :         address tokenOut,</span>
 <span id="L152"><span class="lineNum">     152</span>              :         uint256 amountIn</span>
 <span id="L153"><span class="lineNum">     153</span>              :     ) external view virtual returns (uint256 amountOut) {</span>
-<span id="L154"><span class="lineNum">     154</span> <span class="tlaGNC">          11 :         PoolExchange memory exchange = getPoolExchange(exchangeId);</span></span>
-<span id="L155"><span class="lineNum">     155</span> <span class="tlaGNC">          10 :         uint256 scaledAmountIn = amountIn * tokenPrecisionMultipliers[tokenIn];</span></span>
-<span id="L156"><span class="lineNum">     156</span> <span class="tlaGNC">          10 :         uint256 scaledAmountOut = _getAmountOut(</span></span>
+<span id="L154"><span class="lineNum">     154</span> <span class="tlaGNC">          13 :         PoolExchange memory exchange = getPoolExchange(exchangeId);</span></span>
+<span id="L155"><span class="lineNum">     155</span> <span class="tlaGNC">          12 :         uint256 scaledAmountIn = amountIn * tokenPrecisionMultipliers[tokenIn];</span></span>
+<span id="L156"><span class="lineNum">     156</span> <span class="tlaGNC">          12 :         uint256 scaledAmountOut = _getAmountOut(</span></span>
 <span id="L157"><span class="lineNum">     157</span>              :             exchange,</span>
 <span id="L158"><span class="lineNum">     158</span>              :             tokenIn,</span>
 <span id="L159"><span class="lineNum">     159</span>              :             tokenOut,</span>
 <span id="L160"><span class="lineNum">     160</span>              :             scaledAmountIn</span>
 <span id="L161"><span class="lineNum">     161</span>              :         );</span>
-<span id="L162"><span class="lineNum">     162</span> <span class="tlaGNC">           4 :         amountOut = scaledAmountOut / tokenPrecisionMultipliers[tokenOut];</span></span>
-<span id="L163"><span class="lineNum">     163</span> <span class="tlaGNC">           4 :         return amountOut;</span></span>
+<span id="L162"><span class="lineNum">     162</span> <span class="tlaGNC">           6 :         amountOut = scaledAmountOut / tokenPrecisionMultipliers[tokenOut];</span></span>
+<span id="L163"><span class="lineNum">     163</span> <span class="tlaGNC">           6 :         return amountOut;</span></span>
 <span id="L164"><span class="lineNum">     164</span>              :     }</span>
 <span id="L165"><span class="lineNum">     165</span>              : </span>
 <span id="L166"><span class="lineNum">     166</span>              :     /**</span>
@@ -239,17 +239,17 @@
 <span id="L177"><span class="lineNum">     177</span>              :         address tokenOut,</span>
 <span id="L178"><span class="lineNum">     178</span>              :         uint256 amountOut</span>
 <span id="L179"><span class="lineNum">     179</span>              :     ) external view virtual returns (uint256 amountIn) {</span>
-<span id="L180"><span class="lineNum">     180</span> <span class="tlaGNC">           5 :         PoolExchange memory exchange = getPoolExchange(exchangeId);</span></span>
-<span id="L181"><span class="lineNum">     181</span> <span class="tlaGNC">           4 :         uint256 scaledAmountOut = amountOut *</span></span>
+<span id="L180"><span class="lineNum">     180</span> <span class="tlaGNC">           7 :         PoolExchange memory exchange = getPoolExchange(exchangeId);</span></span>
+<span id="L181"><span class="lineNum">     181</span> <span class="tlaGNC">           6 :         uint256 scaledAmountOut = amountOut *</span></span>
 <span id="L182"><span class="lineNum">     182</span>              :             tokenPrecisionMultipliers[tokenOut];</span>
-<span id="L183"><span class="lineNum">     183</span> <span class="tlaGNC">           4 :         uint256 scaledAmountIn = _getAmountIn(</span></span>
+<span id="L183"><span class="lineNum">     183</span> <span class="tlaGNC">           6 :         uint256 scaledAmountIn = _getAmountIn(</span></span>
 <span id="L184"><span class="lineNum">     184</span>              :             exchange,</span>
 <span id="L185"><span class="lineNum">     185</span>              :             tokenIn,</span>
 <span id="L186"><span class="lineNum">     186</span>              :             tokenOut,</span>
 <span id="L187"><span class="lineNum">     187</span>              :             scaledAmountOut</span>
 <span id="L188"><span class="lineNum">     188</span>              :         );</span>
-<span id="L189"><span class="lineNum">     189</span> <span class="tlaGNC">           4 :         amountIn = scaledAmountIn / tokenPrecisionMultipliers[tokenIn];</span></span>
-<span id="L190"><span class="lineNum">     190</span> <span class="tlaGNC">           4 :         return amountIn;</span></span>
+<span id="L189"><span class="lineNum">     189</span> <span class="tlaGNC">           6 :         amountIn = scaledAmountIn / tokenPrecisionMultipliers[tokenIn];</span></span>
+<span id="L190"><span class="lineNum">     190</span> <span class="tlaGNC">           6 :         return amountIn;</span></span>
 <span id="L191"><span class="lineNum">     191</span>              :     }</span>
 <span id="L192"><span class="lineNum">     192</span>              : </span>
 <span id="L193"><span class="lineNum">     193</span>              :     /**</span>
@@ -261,17 +261,17 @@
 <span id="L199"><span class="lineNum">     199</span>              :         bytes32 exchangeId</span>
 <span id="L200"><span class="lineNum">     200</span>              :     ) public view returns (uint256 price) {</span>
 <span id="L201"><span class="lineNum">     201</span>              :         // calculates: reserveBalance / (tokenSupply * reserveRatio)</span>
-<span id="L202"><span class="lineNum">     202</span> <span class="tlaGNC">           8 :         require(</span></span>
+<span id="L202"><span class="lineNum">     202</span> <span class="tlaGNC">          20 :         require(</span></span>
 <span id="L203"><span class="lineNum">     203</span>              :             exchanges[exchangeId].reserveAsset != address(0),</span>
 <span id="L204"><span class="lineNum">     204</span>              :             &quot;Exchange does not exist&quot;</span>
 <span id="L205"><span class="lineNum">     205</span>              :         );</span>
-<span id="L206"><span class="lineNum">     206</span> <span class="tlaGNC">           7 :         PoolExchange memory exchange = getPoolExchange(exchangeId);</span></span>
-<span id="L207"><span class="lineNum">     207</span> <span class="tlaGNC">           7 :         uint256 scaledReserveRatio = uint256(exchange.reserveRatio) * 1e10;</span></span>
-<span id="L208"><span class="lineNum">     208</span> <span class="tlaGNC">           7 :         UD60x18 denominator = wrap(exchange.tokenSupply).mul(</span></span>
+<span id="L206"><span class="lineNum">     206</span> <span class="tlaGNC">          19 :         PoolExchange memory exchange = getPoolExchange(exchangeId);</span></span>
+<span id="L207"><span class="lineNum">     207</span> <span class="tlaGNC">          19 :         uint256 scaledReserveRatio = uint256(exchange.reserveRatio) * 1e10;</span></span>
+<span id="L208"><span class="lineNum">     208</span> <span class="tlaGNC">          19 :         UD60x18 denominator = wrap(exchange.tokenSupply).mul(</span></span>
 <span id="L209"><span class="lineNum">     209</span>              :             wrap(scaledReserveRatio)</span>
 <span id="L210"><span class="lineNum">     210</span>              :         );</span>
-<span id="L211"><span class="lineNum">     211</span> <span class="tlaGNC">           7 :         price = unwrap(wrap(exchange.reserveBalance).div(denominator));</span></span>
-<span id="L212"><span class="lineNum">     212</span> <span class="tlaGNC">           7 :         return price;</span></span>
+<span id="L211"><span class="lineNum">     211</span> <span class="tlaGNC">          19 :         price = unwrap(wrap(exchange.reserveBalance).div(denominator));</span></span>
+<span id="L212"><span class="lineNum">     212</span> <span class="tlaGNC">          19 :         return price;</span></span>
 <span id="L213"><span class="lineNum">     213</span>              :     }</span>
 <span id="L214"><span class="lineNum">     214</span>              : </span>
 <span id="L215"><span class="lineNum">     215</span>              :     /* ==================== Mutative Functions ==================== */</span>
@@ -281,9 +281,9 @@
 <span id="L219"><span class="lineNum">     219</span>              :      * @param _broker The new address of the broker contract.</span>
 <span id="L220"><span class="lineNum">     220</span>              :      */</span>
 <span id="L221"><span class="lineNum">     221</span>              :     function setBroker(address _broker) public onlyOwner {</span>
-<span id="L222"><span class="lineNum">     222</span> <span class="tlaGNC">          90 :         require(_broker != address(0), &quot;Broker address must be set&quot;);</span></span>
-<span id="L223"><span class="lineNum">     223</span> <span class="tlaGNC">          89 :         broker = _broker;</span></span>
-<span id="L224"><span class="lineNum">     224</span> <span class="tlaGNC">          89 :         emit BrokerUpdated(_broker);</span></span>
+<span id="L222"><span class="lineNum">     222</span> <span class="tlaGNC">          96 :         require(_broker != address(0), &quot;Broker address must be set&quot;);</span></span>
+<span id="L223"><span class="lineNum">     223</span> <span class="tlaGNC">          95 :         broker = _broker;</span></span>
+<span id="L224"><span class="lineNum">     224</span> <span class="tlaGNC">          95 :         emit BrokerUpdated(_broker);</span></span>
 <span id="L225"><span class="lineNum">     225</span>              :     }</span>
 <span id="L226"><span class="lineNum">     226</span>              : </span>
 <span id="L227"><span class="lineNum">     227</span>              :     /**</span>
@@ -291,9 +291,9 @@
 <span id="L229"><span class="lineNum">     229</span>              :      * @param _reserve The new address of the reserve contract.</span>
 <span id="L230"><span class="lineNum">     230</span>              :      */</span>
 <span id="L231"><span class="lineNum">     231</span>              :     function setReserve(address _reserve) public onlyOwner {</span>
-<span id="L232"><span class="lineNum">     232</span> <span class="tlaGNC">          90 :         require(address(_reserve) != address(0), &quot;Reserve address must be set&quot;);</span></span>
-<span id="L233"><span class="lineNum">     233</span> <span class="tlaGNC">          89 :         reserve = IReserve(_reserve);</span></span>
-<span id="L234"><span class="lineNum">     234</span> <span class="tlaGNC">          89 :         emit ReserveUpdated(address(_reserve));</span></span>
+<span id="L232"><span class="lineNum">     232</span> <span class="tlaGNC">          96 :         require(address(_reserve) != address(0), &quot;Reserve address must be set&quot;);</span></span>
+<span id="L233"><span class="lineNum">     233</span> <span class="tlaGNC">          95 :         reserve = IReserve(_reserve);</span></span>
+<span id="L234"><span class="lineNum">     234</span> <span class="tlaGNC">          95 :         emit ReserveUpdated(address(_reserve));</span></span>
 <span id="L235"><span class="lineNum">     235</span>              :     }</span>
 <span id="L236"><span class="lineNum">     236</span>              : </span>
 <span id="L237"><span class="lineNum">     237</span>              :     /**</span>
@@ -324,36 +324,36 @@
 <span id="L262"><span class="lineNum">     262</span>              :     function createExchange(</span>
 <span id="L263"><span class="lineNum">     263</span>              :         PoolExchange calldata _exchange</span>
 <span id="L264"><span class="lineNum">     264</span>              :     ) external onlyOwner returns (bytes32 exchangeId) {</span>
-<span id="L265"><span class="lineNum">     265</span> <span class="tlaGNC">          63 :         PoolExchange memory exchange = _exchange;</span></span>
-<span id="L266"><span class="lineNum">     266</span> <span class="tlaGNC">          63 :         validate(exchange);</span></span>
+<span id="L265"><span class="lineNum">     265</span> <span class="tlaGNC">          69 :         PoolExchange memory exchange = _exchange;</span></span>
+<span id="L266"><span class="lineNum">     266</span> <span class="tlaGNC">          69 :         validate(exchange);</span></span>
 <span id="L267"><span class="lineNum">     267</span>              : </span>
-<span id="L268"><span class="lineNum">     268</span> <span class="tlaGNC">          55 :         exchangeId = keccak256(</span></span>
+<span id="L268"><span class="lineNum">     268</span> <span class="tlaGNC">          61 :         exchangeId = keccak256(</span></span>
 <span id="L269"><span class="lineNum">     269</span>              :             abi.encodePacked(</span>
 <span id="L270"><span class="lineNum">     270</span>              :                 IERC20(exchange.reserveAsset).symbol(),</span>
 <span id="L271"><span class="lineNum">     271</span>              :                 IERC20(exchange.tokenAddress).symbol()</span>
 <span id="L272"><span class="lineNum">     272</span>              :             )</span>
 <span id="L273"><span class="lineNum">     273</span>              :         );</span>
-<span id="L274"><span class="lineNum">     274</span> <span class="tlaGNC">          55 :         require(</span></span>
+<span id="L274"><span class="lineNum">     274</span> <span class="tlaGNC">          61 :         require(</span></span>
 <span id="L275"><span class="lineNum">     275</span>              :             exchanges[exchangeId].reserveAsset == address(0),</span>
 <span id="L276"><span class="lineNum">     276</span>              :             &quot;Exchange already exists&quot;</span>
 <span id="L277"><span class="lineNum">     277</span>              :         );</span>
 <span id="L278"><span class="lineNum">     278</span>              : </span>
-<span id="L279"><span class="lineNum">     279</span> <span class="tlaGNC">          54 :         uint256 reserveAssetDecimals = IERC20(exchange.reserveAsset).decimals();</span></span>
-<span id="L280"><span class="lineNum">     280</span> <span class="tlaGNC">          54 :         uint256 tokenDecimals = IERC20(exchange.tokenAddress).decimals();</span></span>
-<span id="L281"><span class="lineNum">     281</span> <span class="tlaGNC">          54 :         require(</span></span>
+<span id="L279"><span class="lineNum">     279</span> <span class="tlaGNC">          60 :         uint256 reserveAssetDecimals = IERC20(exchange.reserveAsset).decimals();</span></span>
+<span id="L280"><span class="lineNum">     280</span> <span class="tlaGNC">          60 :         uint256 tokenDecimals = IERC20(exchange.tokenAddress).decimals();</span></span>
+<span id="L281"><span class="lineNum">     281</span> <span class="tlaGNC">          60 :         require(</span></span>
 <span id="L282"><span class="lineNum">     282</span>              :             reserveAssetDecimals &lt;= 18,</span>
 <span id="L283"><span class="lineNum">     283</span>              :             &quot;reserve token decimals must be &lt;= 18&quot;</span>
 <span id="L284"><span class="lineNum">     284</span>              :         );</span>
-<span id="L285"><span class="lineNum">     285</span> <span class="tlaGNC">          53 :         require(tokenDecimals &lt;= 18, &quot;token decimals must be &lt;= 18&quot;);</span></span>
+<span id="L285"><span class="lineNum">     285</span> <span class="tlaGNC">          59 :         require(tokenDecimals &lt;= 18, &quot;token decimals must be &lt;= 18&quot;);</span></span>
 <span id="L286"><span class="lineNum">     286</span>              : </span>
-<span id="L287"><span class="lineNum">     287</span> <span class="tlaGNC">          52 :         tokenPrecisionMultipliers[exchange.reserveAsset] =</span></span>
+<span id="L287"><span class="lineNum">     287</span> <span class="tlaGNC">          58 :         tokenPrecisionMultipliers[exchange.reserveAsset] =</span></span>
 <span id="L288"><span class="lineNum">     288</span>              :             10 ** (18 - uint256(reserveAssetDecimals));</span>
-<span id="L289"><span class="lineNum">     289</span> <span class="tlaGNC">          52 :         tokenPrecisionMultipliers[exchange.tokenAddress] =</span></span>
+<span id="L289"><span class="lineNum">     289</span> <span class="tlaGNC">          58 :         tokenPrecisionMultipliers[exchange.tokenAddress] =</span></span>
 <span id="L290"><span class="lineNum">     290</span>              :             10 ** (18 - uint256(tokenDecimals));</span>
 <span id="L291"><span class="lineNum">     291</span>              : </span>
-<span id="L292"><span class="lineNum">     292</span> <span class="tlaGNC">          52 :         exchanges[exchangeId] = exchange;</span></span>
-<span id="L293"><span class="lineNum">     293</span> <span class="tlaGNC">          52 :         exchangeIds.push(exchangeId);</span></span>
-<span id="L294"><span class="lineNum">     294</span> <span class="tlaGNC">          52 :         emit ExchangeCreated(</span></span>
+<span id="L292"><span class="lineNum">     292</span> <span class="tlaGNC">          58 :         exchanges[exchangeId] = exchange;</span></span>
+<span id="L293"><span class="lineNum">     293</span> <span class="tlaGNC">          58 :         exchangeIds.push(exchangeId);</span></span>
+<span id="L294"><span class="lineNum">     294</span> <span class="tlaGNC">          58 :         emit ExchangeCreated(</span></span>
 <span id="L295"><span class="lineNum">     295</span>              :             exchangeId,</span>
 <span id="L296"><span class="lineNum">     296</span>              :             exchange.reserveAsset,</span>
 <span id="L297"><span class="lineNum">     297</span>              :             exchange.tokenAddress</span>
@@ -406,18 +406,18 @@
 <span id="L344"><span class="lineNum">     344</span>              :         address tokenOut,</span>
 <span id="L345"><span class="lineNum">     345</span>              :         uint256 amountIn</span>
 <span id="L346"><span class="lineNum">     346</span>              :     ) public virtual onlyBroker returns (uint256 amountOut) {</span>
-<span id="L347"><span class="lineNum">     347</span> <span class="tlaGNC">           7 :         PoolExchange memory exchange = getPoolExchange(exchangeId);</span></span>
-<span id="L348"><span class="lineNum">     348</span> <span class="tlaGNC">           6 :         uint256 scaledAmountIn = amountIn * tokenPrecisionMultipliers[tokenIn];</span></span>
-<span id="L349"><span class="lineNum">     349</span> <span class="tlaGNC">           6 :         uint256 scaledAmountOut = _getAmountOut(</span></span>
+<span id="L347"><span class="lineNum">     347</span> <span class="tlaGNC">           9 :         PoolExchange memory exchange = getPoolExchange(exchangeId);</span></span>
+<span id="L348"><span class="lineNum">     348</span> <span class="tlaGNC">           8 :         uint256 scaledAmountIn = amountIn * tokenPrecisionMultipliers[tokenIn];</span></span>
+<span id="L349"><span class="lineNum">     349</span> <span class="tlaGNC">           8 :         uint256 scaledAmountOut = _getAmountOut(</span></span>
 <span id="L350"><span class="lineNum">     350</span>              :             exchange,</span>
 <span id="L351"><span class="lineNum">     351</span>              :             tokenIn,</span>
 <span id="L352"><span class="lineNum">     352</span>              :             tokenOut,</span>
 <span id="L353"><span class="lineNum">     353</span>              :             scaledAmountIn</span>
 <span id="L354"><span class="lineNum">     354</span>              :         );</span>
-<span id="L355"><span class="lineNum">     355</span> <span class="tlaGNC">           3 :         executeSwap(exchangeId, tokenIn, scaledAmountIn, scaledAmountOut);</span></span>
+<span id="L355"><span class="lineNum">     355</span> <span class="tlaGNC">           5 :         executeSwap(exchangeId, tokenIn, scaledAmountIn, scaledAmountOut);</span></span>
 <span id="L356"><span class="lineNum">     356</span>              : </span>
-<span id="L357"><span class="lineNum">     357</span> <span class="tlaGNC">           3 :         amountOut = scaledAmountOut / tokenPrecisionMultipliers[tokenOut];</span></span>
-<span id="L358"><span class="lineNum">     358</span> <span class="tlaGNC">           3 :         return amountOut;</span></span>
+<span id="L357"><span class="lineNum">     357</span> <span class="tlaGNC">           5 :         amountOut = scaledAmountOut / tokenPrecisionMultipliers[tokenOut];</span></span>
+<span id="L358"><span class="lineNum">     358</span> <span class="tlaGNC">           5 :         return amountOut;</span></span>
 <span id="L359"><span class="lineNum">     359</span>              :     }</span>
 <span id="L360"><span class="lineNum">     360</span>              : </span>
 <span id="L361"><span class="lineNum">     361</span>              :     /**</span>
@@ -434,19 +434,19 @@
 <span id="L372"><span class="lineNum">     372</span>              :         address tokenOut,</span>
 <span id="L373"><span class="lineNum">     373</span>              :         uint256 amountOut</span>
 <span id="L374"><span class="lineNum">     374</span>              :     ) public virtual onlyBroker returns (uint256 amountIn) {</span>
-<span id="L375"><span class="lineNum">     375</span> <span class="tlaGNC">           7 :         PoolExchange memory exchange = getPoolExchange(exchangeId);</span></span>
-<span id="L376"><span class="lineNum">     376</span> <span class="tlaGNC">           6 :         uint256 scaledAmountOut = amountOut *</span></span>
+<span id="L375"><span class="lineNum">     375</span> <span class="tlaGNC">           9 :         PoolExchange memory exchange = getPoolExchange(exchangeId);</span></span>
+<span id="L376"><span class="lineNum">     376</span> <span class="tlaGNC">           8 :         uint256 scaledAmountOut = amountOut *</span></span>
 <span id="L377"><span class="lineNum">     377</span>              :             tokenPrecisionMultipliers[tokenOut];</span>
-<span id="L378"><span class="lineNum">     378</span> <span class="tlaGNC">           6 :         uint256 scaledAmountIn = _getAmountIn(</span></span>
+<span id="L378"><span class="lineNum">     378</span> <span class="tlaGNC">           8 :         uint256 scaledAmountIn = _getAmountIn(</span></span>
 <span id="L379"><span class="lineNum">     379</span>              :             exchange,</span>
 <span id="L380"><span class="lineNum">     380</span>              :             tokenIn,</span>
 <span id="L381"><span class="lineNum">     381</span>              :             tokenOut,</span>
 <span id="L382"><span class="lineNum">     382</span>              :             scaledAmountOut</span>
 <span id="L383"><span class="lineNum">     383</span>              :         );</span>
-<span id="L384"><span class="lineNum">     384</span> <span class="tlaGNC">           3 :         executeSwap(exchangeId, tokenIn, scaledAmountIn, scaledAmountOut);</span></span>
+<span id="L384"><span class="lineNum">     384</span> <span class="tlaGNC">           5 :         executeSwap(exchangeId, tokenIn, scaledAmountIn, scaledAmountOut);</span></span>
 <span id="L385"><span class="lineNum">     385</span>              : </span>
-<span id="L386"><span class="lineNum">     386</span> <span class="tlaGNC">           3 :         amountIn = scaledAmountIn / tokenPrecisionMultipliers[tokenIn];</span></span>
-<span id="L387"><span class="lineNum">     387</span> <span class="tlaGNC">           3 :         return amountIn;</span></span>
+<span id="L386"><span class="lineNum">     386</span> <span class="tlaGNC">           5 :         amountIn = scaledAmountIn / tokenPrecisionMultipliers[tokenIn];</span></span>
+<span id="L387"><span class="lineNum">     387</span> <span class="tlaGNC">           5 :         return amountIn;</span></span>
 <span id="L388"><span class="lineNum">     388</span>              :     }</span>
 <span id="L389"><span class="lineNum">     389</span>              : </span>
 <span id="L390"><span class="lineNum">     390</span>              :     /* ==================== Private Functions ==================== */</span>
@@ -465,16 +465,16 @@
 <span id="L403"><span class="lineNum">     403</span>              :         uint256 scaledAmountIn,</span>
 <span id="L404"><span class="lineNum">     404</span>              :         uint256 scaledAmountOut</span>
 <span id="L405"><span class="lineNum">     405</span>              :     ) internal {</span>
-<span id="L406"><span class="lineNum">     406</span> <span class="tlaGNC">           6 :         PoolExchange memory exchange = getPoolExchange(exchangeId);</span></span>
-<span id="L407"><span class="lineNum">     407</span> <span class="tlaGNC">           6 :         if (tokenIn == exchange.reserveAsset) {</span></span>
-<span id="L408"><span class="lineNum">     408</span> <span class="tlaGNC">           4 :             exchange.reserveBalance += scaledAmountIn;</span></span>
-<span id="L409"><span class="lineNum">     409</span> <span class="tlaGNC">           4 :             exchange.tokenSupply += scaledAmountOut;</span></span>
+<span id="L406"><span class="lineNum">     406</span> <span class="tlaGNC">          10 :         PoolExchange memory exchange = getPoolExchange(exchangeId);</span></span>
+<span id="L407"><span class="lineNum">     407</span> <span class="tlaGNC">          10 :         if (tokenIn == exchange.reserveAsset) {</span></span>
+<span id="L408"><span class="lineNum">     408</span> <span class="tlaGNC">           6 :             exchange.reserveBalance += scaledAmountIn;</span></span>
+<span id="L409"><span class="lineNum">     409</span> <span class="tlaGNC">           6 :             exchange.tokenSupply += scaledAmountOut;</span></span>
 <span id="L410"><span class="lineNum">     410</span>              :         } else {</span>
-<span id="L411"><span class="lineNum">     411</span> <span class="tlaGNC">           2 :             exchange.reserveBalance -= scaledAmountOut;</span></span>
-<span id="L412"><span class="lineNum">     412</span> <span class="tlaGNC">           2 :             exchange.tokenSupply -= scaledAmountIn;</span></span>
+<span id="L411"><span class="lineNum">     411</span> <span class="tlaGNC">           4 :             exchange.reserveBalance -= scaledAmountOut;</span></span>
+<span id="L412"><span class="lineNum">     412</span> <span class="tlaGNC">           4 :             exchange.tokenSupply -= scaledAmountIn;</span></span>
 <span id="L413"><span class="lineNum">     413</span>              :         }</span>
-<span id="L414"><span class="lineNum">     414</span> <span class="tlaGNC">           6 :         exchanges[exchangeId].reserveBalance = exchange.reserveBalance;</span></span>
-<span id="L415"><span class="lineNum">     415</span> <span class="tlaGNC">           6 :         exchanges[exchangeId].tokenSupply = exchange.tokenSupply;</span></span>
+<span id="L414"><span class="lineNum">     414</span> <span class="tlaGNC">          10 :         exchanges[exchangeId].reserveBalance = exchange.reserveBalance;</span></span>
+<span id="L415"><span class="lineNum">     415</span> <span class="tlaGNC">          10 :         exchanges[exchangeId].tokenSupply = exchange.tokenSupply;</span></span>
 <span id="L416"><span class="lineNum">     416</span>              :     }</span>
 <span id="L417"><span class="lineNum">     417</span>              : </span>
 <span id="L418"><span class="lineNum">     418</span>              :     /**</span>
@@ -496,22 +496,22 @@
 <span id="L434"><span class="lineNum">     434</span>              :         verifyExchangeTokens(tokenIn, tokenOut, exchange)</span>
 <span id="L435"><span class="lineNum">     435</span>              :         returns (uint256 scaledAmountIn)</span>
 <span id="L436"><span class="lineNum">     436</span>              :     {</span>
-<span id="L437"><span class="lineNum">     437</span> <span class="tlaGNC">           7 :         if (tokenIn == exchange.reserveAsset) {</span></span>
-<span id="L438"><span class="lineNum">     438</span> <span class="tlaGNC">           4 :             scaledAmountIn = fundCost(</span></span>
+<span id="L437"><span class="lineNum">     437</span> <span class="tlaGNC">          11 :         if (tokenIn == exchange.reserveAsset) {</span></span>
+<span id="L438"><span class="lineNum">     438</span> <span class="tlaGNC">           6 :             scaledAmountIn = fundCost(</span></span>
 <span id="L439"><span class="lineNum">     439</span>              :                 exchange.tokenSupply,</span>
 <span id="L440"><span class="lineNum">     440</span>              :                 exchange.reserveBalance,</span>
 <span id="L441"><span class="lineNum">     441</span>              :                 exchange.reserveRatio,</span>
 <span id="L442"><span class="lineNum">     442</span>              :                 scaledAmountOut</span>
 <span id="L443"><span class="lineNum">     443</span>              :             );</span>
 <span id="L444"><span class="lineNum">     444</span>              :         } else {</span>
-<span id="L445"><span class="lineNum">     445</span> <span class="tlaGNC">           3 :             scaledAmountIn = fundSupplyAmount(</span></span>
+<span id="L445"><span class="lineNum">     445</span> <span class="tlaGNC">           5 :             scaledAmountIn = fundSupplyAmount(</span></span>
 <span id="L446"><span class="lineNum">     446</span>              :                 exchange.tokenSupply,</span>
 <span id="L447"><span class="lineNum">     447</span>              :                 exchange.reserveBalance,</span>
 <span id="L448"><span class="lineNum">     448</span>              :                 exchange.reserveRatio,</span>
 <span id="L449"><span class="lineNum">     449</span>              :                 scaledAmountOut</span>
 <span id="L450"><span class="lineNum">     450</span>              :             );</span>
 <span id="L451"><span class="lineNum">     451</span>              : </span>
-<span id="L452"><span class="lineNum">     452</span> <span class="tlaGNC">           3 :             scaledAmountIn =</span></span>
+<span id="L452"><span class="lineNum">     452</span> <span class="tlaGNC">           5 :             scaledAmountIn =</span></span>
 <span id="L453"><span class="lineNum">     453</span>              :                 (scaledAmountIn * MAX_WEIGHT) /</span>
 <span id="L454"><span class="lineNum">     454</span>              :                 (MAX_WEIGHT - exchange.exitContribution);</span>
 <span id="L455"><span class="lineNum">     455</span>              :         }</span>
@@ -536,18 +536,18 @@
 <span id="L474"><span class="lineNum">     474</span>              :         verifyExchangeTokens(tokenIn, tokenOut, exchange)</span>
 <span id="L475"><span class="lineNum">     475</span>              :         returns (uint256 scaledAmountOut)</span>
 <span id="L476"><span class="lineNum">     476</span>              :     {</span>
-<span id="L477"><span class="lineNum">     477</span> <span class="tlaGNC">           7 :         if (tokenIn == exchange.reserveAsset) {</span></span>
-<span id="L478"><span class="lineNum">     478</span> <span class="tlaGNC">           4 :             scaledAmountOut = purchaseTargetAmount(</span></span>
+<span id="L477"><span class="lineNum">     477</span> <span class="tlaGNC">          11 :         if (tokenIn == exchange.reserveAsset) {</span></span>
+<span id="L478"><span class="lineNum">     478</span> <span class="tlaGNC">           6 :             scaledAmountOut = purchaseTargetAmount(</span></span>
 <span id="L479"><span class="lineNum">     479</span>              :                 exchange.tokenSupply,</span>
 <span id="L480"><span class="lineNum">     480</span>              :                 exchange.reserveBalance,</span>
 <span id="L481"><span class="lineNum">     481</span>              :                 exchange.reserveRatio,</span>
 <span id="L482"><span class="lineNum">     482</span>              :                 scaledAmountIn</span>
 <span id="L483"><span class="lineNum">     483</span>              :             );</span>
 <span id="L484"><span class="lineNum">     484</span>              :         } else {</span>
-<span id="L485"><span class="lineNum">     485</span> <span class="tlaGNC">           3 :             scaledAmountIn =</span></span>
+<span id="L485"><span class="lineNum">     485</span> <span class="tlaGNC">           5 :             scaledAmountIn =</span></span>
 <span id="L486"><span class="lineNum">     486</span>              :                 (scaledAmountIn * (MAX_WEIGHT - exchange.exitContribution)) /</span>
 <span id="L487"><span class="lineNum">     487</span>              :                 MAX_WEIGHT;</span>
-<span id="L488"><span class="lineNum">     488</span> <span class="tlaGNC">           3 :             scaledAmountOut = saleTargetAmount(</span></span>
+<span id="L488"><span class="lineNum">     488</span> <span class="tlaGNC">           5 :             scaledAmountOut = saleTargetAmount(</span></span>
 <span id="L489"><span class="lineNum">     489</span>              :                 exchange.tokenSupply,</span>
 <span id="L490"><span class="lineNum">     490</span>              :                 exchange.reserveBalance,</span>
 <span id="L491"><span class="lineNum">     491</span>              :                 exchange.reserveRatio,</span>
@@ -562,19 +562,19 @@
 <span id="L500"><span class="lineNum">     500</span>              :      * @param exchange The PoolExchange to validate</span>
 <span id="L501"><span class="lineNum">     501</span>              :      */</span>
 <span id="L502"><span class="lineNum">     502</span>              :     function validate(PoolExchange memory exchange) private view {</span>
-<span id="L503"><span class="lineNum">     503</span> <span class="tlaGNC">          63 :         require(exchange.reserveAsset != address(0), &quot;Invalid reserve asset&quot;);</span></span>
-<span id="L504"><span class="lineNum">     504</span> <span class="tlaGNC">          62 :         require(</span></span>
+<span id="L503"><span class="lineNum">     503</span> <span class="tlaGNC">          69 :         require(exchange.reserveAsset != address(0), &quot;Invalid reserve asset&quot;);</span></span>
+<span id="L504"><span class="lineNum">     504</span> <span class="tlaGNC">          68 :         require(</span></span>
 <span id="L505"><span class="lineNum">     505</span>              :             reserve.isCollateralAsset(exchange.reserveAsset),</span>
 <span id="L506"><span class="lineNum">     506</span>              :             &quot;reserve asset must be a collateral registered with the reserve&quot;</span>
 <span id="L507"><span class="lineNum">     507</span>              :         );</span>
-<span id="L508"><span class="lineNum">     508</span> <span class="tlaGNC">          61 :         require(exchange.tokenAddress != address(0), &quot;Invalid token address&quot;);</span></span>
-<span id="L509"><span class="lineNum">     509</span> <span class="tlaGNC">          60 :         require(</span></span>
+<span id="L508"><span class="lineNum">     508</span> <span class="tlaGNC">          67 :         require(exchange.tokenAddress != address(0), &quot;Invalid token address&quot;);</span></span>
+<span id="L509"><span class="lineNum">     509</span> <span class="tlaGNC">          66 :         require(</span></span>
 <span id="L510"><span class="lineNum">     510</span>              :             reserve.isStableAsset(exchange.tokenAddress),</span>
 <span id="L511"><span class="lineNum">     511</span>              :             &quot;token must be a stable registered with the reserve&quot;</span>
 <span id="L512"><span class="lineNum">     512</span>              :         );</span>
-<span id="L513"><span class="lineNum">     513</span> <span class="tlaGNC">          59 :         require(exchange.reserveRatio &gt; 1, &quot;Invalid reserve ratio&quot;);</span></span>
-<span id="L514"><span class="lineNum">     514</span> <span class="tlaGNC">          57 :         require(exchange.reserveRatio &lt;= MAX_WEIGHT, &quot;Invalid reserve ratio&quot;);</span></span>
-<span id="L515"><span class="lineNum">     515</span> <span class="tlaGNC">          56 :         require(</span></span>
+<span id="L513"><span class="lineNum">     513</span> <span class="tlaGNC">          65 :         require(exchange.reserveRatio &gt; 1, &quot;Invalid reserve ratio&quot;);</span></span>
+<span id="L514"><span class="lineNum">     514</span> <span class="tlaGNC">          63 :         require(exchange.reserveRatio &lt;= MAX_WEIGHT, &quot;Invalid reserve ratio&quot;);</span></span>
+<span id="L515"><span class="lineNum">     515</span> <span class="tlaGNC">          62 :         require(</span></span>
 <span id="L516"><span class="lineNum">     516</span>              :             exchange.exitContribution &lt;= MAX_WEIGHT,</span>
 <span id="L517"><span class="lineNum">     517</span>              :             &quot;Invalid exit contribution&quot;</span>
 <span id="L518"><span class="lineNum">     518</span>              :         );</span>
