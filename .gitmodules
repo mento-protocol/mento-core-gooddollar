@@ -13,3 +13,6 @@
 [submodule "lib/mento-std"]
 	path = lib/mento-std
 	url = https://github.com/mento-protocol/mento-std
+[submodule "lib/openzeppelin-contracts"]
+	path = lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
